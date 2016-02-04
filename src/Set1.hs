@@ -6,6 +6,9 @@ module Set1 where
 import MCPrelude
 
 
+type Gen v = Seed -> (v, Seed)
+
+
 fiveRands :: [Integer]
 
 fiveRands = [a, b, c, d, e]
@@ -17,7 +20,7 @@ fiveRands = [a, b, c, d, e]
     (e,se) = rand sd
 
 
-randLetter :: Seed -> (Char, Seed)
+randLetter :: Gen Char
 randString3 :: String
 
 randLetter seed = (letter, nextSeed)
@@ -30,3 +33,17 @@ randString3 = [a, b, c]
     (a,sa) = randLetter $ mkSeed 1
     (b,sb) = randLetter sa
     (c,sc) = randLetter sb
+
+
+generalA :: (a -> b) -> Gen a -> Gen b
+randEven :: Gen Integer
+randOdd :: Gen Integer
+randTen :: Gen Integer
+
+generalA trans base seed = (trans value, nextSeed)
+  where
+    (value, nextSeed) = base seed
+
+randEven = generalA (*2) rand
+randOdd = generalA (+1) randEven
+randTen = generalA (*10) rand

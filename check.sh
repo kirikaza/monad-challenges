@@ -15,3 +15,7 @@ cd "$(dirname "$0")"
   'tr -d "\\n" | shasum -a 256 | cut -d" " -f1' \
   9d475eb78d3e38085220ed6ebde9d8f7d26540bb1c8f9382479c3acd4c8c94a3
 
+./check_exercise.sh 1 3 \
+  '[fst $ randEven $ mkSeed 1, fst $ randOdd $ mkSeed 1, fst $ randTen $ mkSeed 1]' \
+  'tr " " "*" | bc' \
+  189908109902700
