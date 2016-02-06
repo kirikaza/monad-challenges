@@ -47,3 +47,26 @@ generalA trans base seed = (trans value, nextSeed)
 randEven = generalA (*2) rand
 randOdd = generalA (+1) randEven
 randTen = generalA (*10) rand
+
+
+randPair :: Gen (Char, Integer)
+generalPair :: Gen a -> Gen b -> Gen (a,b)
+generalB :: (a -> b -> c) -> Gen a -> Gen b -> Gen c
+generalPair2 :: Gen a -> Gen b -> Gen (a,b)
+
+randPair seed = ((char, int), seed'')
+  where
+    (char, seed') = randLetter seed
+    (int, seed'') = rand seed'
+
+generalPair g1 g2 seed = ((v1,v2), seed'')
+  where
+    (v1,seed') = g1 seed
+    (v2,seed'') = g2 seed'
+
+generalB ctor g1 g2 seed = (ctor v1 v2, seed'')
+  where
+    (v1,seed') = g1 seed
+    (v2,seed'') = g2 seed'
+
+generalPair2 = generalB (,)

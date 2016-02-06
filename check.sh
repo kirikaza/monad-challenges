@@ -19,3 +19,8 @@ cd "$(dirname "$0")"
   '[fst $ randEven $ mkSeed 1, fst $ randOdd $ mkSeed 1, fst $ randTen $ mkSeed 1]' \
   'tr " " "*" | bc' \
   189908109902700
+
+./check_exercise.sh 1 4 \
+  'fst $ generalPair2 randLetter rand $ mkSeed 1' \
+  'cat' \
+  "('l' 282475249)"
