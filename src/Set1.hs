@@ -70,3 +70,12 @@ generalB ctor g1 g2 seed = (ctor v1 v2, seed'')
     (v2,seed'') = g2 seed'
 
 generalPair2 = generalB (,)
+
+
+repRandom :: [Gen a] -> Gen [a]
+
+repRandom [] seed = ([], seed)
+repRandom (g:gs) seed = (v:vs, lastSeed)
+  where
+    (v,nextSeed) = g seed
+    (vs,lastSeed) = repRandom gs nextSeed

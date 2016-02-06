@@ -24,3 +24,8 @@ cd "$(dirname "$0")"
   'fst $ generalPair2 randLetter rand $ mkSeed 1' \
   'cat' \
   "('l',282475249)"
+
+./check_exercise.sh 1 5 \
+  'fst $ repRandom (replicate 3 randLetter) $ mkSeed 1' \
+  'tr -d "\"\\n" | shasum -a 256 | cut -d" " -f1' \
+  9d475eb78d3e38085220ed6ebde9d8f7d26540bb1c8f9382479c3acd4c8c94a3
