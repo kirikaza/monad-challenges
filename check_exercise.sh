@@ -34,9 +34,7 @@ haskell_result=$(
 simplified_result=$()
 
 result=$(
-  tr -d '["]' <<< "$haskell_result" |
-    tr , ' ' |
-      eval "$bash_trans"
+  eval "$bash_trans" <<< "$haskell_result"
 )
 
 echo >&2 -n "Exercise $set_number.$exercise_number is "
