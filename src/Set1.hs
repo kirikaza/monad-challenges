@@ -79,3 +79,13 @@ repRandom (g:gs) seed = (v:vs, lastSeed)
   where
     (v,nextSeed) = g seed
     (vs,lastSeed) = repRandom gs nextSeed
+
+
+genTwo :: Gen a -> (a -> Gen b) -> Gen b
+mkGen :: a -> Gen a
+
+genTwo gen1 metaGen2 seed1 = metaGen2 value1 $ seed2
+  where
+   (value1, seed2) = gen1 seed1
+
+mkGen v seed = (v, seed)

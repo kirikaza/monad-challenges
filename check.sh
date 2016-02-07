@@ -29,3 +29,8 @@ cd "$(dirname "$0")"
   'fst $ repRandom (replicate 3 randLetter) $ mkSeed 1' \
   'tr -d "\"\\n" | shasum -a 256 | cut -d" " -f1' \
   9d475eb78d3e38085220ed6ebde9d8f7d26540bb1c8f9382479c3acd4c8c94a3
+
+./check_exercise.sh 1 6 \
+  ':t mkGen' \
+  'tr -d "\\n" | xxd -ps | tr "a-f" "A-F"' \
+  '6D6B47656E203A3A2061202D3E2047656E2061'
