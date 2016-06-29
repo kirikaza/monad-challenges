@@ -42,6 +42,6 @@ if [ "$answer" = "$result" ] ; then
   echo >&2 "correct"
   exit 0
 else
-  echo >&2 "incorrect: right answer is $answer but actual result is $result"
+  echo >&2 -e "incorrect:\n\tright answer is\n\t\t$answer\n\tbut actual result is\n\t\t$result"
   exit 1
 fi

@@ -33,4 +33,9 @@ cd "$(dirname "$0")"
 ./check_exercise.sh 1 6 \
   ':t mkGen' \
   'tr -d "\\n" | xxd -ps | tr "a-f" "A-F"' \
-  '6D6B47656E203A3A2061202D3E2047656E2061'
+  6D6B47656E203A3A2061202D3E2047656E2061
+
+./check_exercise.sh 2 1 \
+  ':i Maybe' \
+  'cut -d- -f1 | tr -d "\\t" | sed "s/ $//" | tr -d "\\n" | xxd -ps -c 256 | tr "a-f" "A-F"' \
+    64617461204D617962652061203D204E6F7468696E67207C204A7573742061
