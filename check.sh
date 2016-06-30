@@ -38,4 +38,28 @@ cd "$(dirname "$0")"
 ./check_exercise.sh 2 1 \
   ':i Maybe' \
   'cut -d- -f1 | tr -d "\\t" | sed "s/ $//" | tr -d "\\n" | xxd -ps -c 256 | tr "a-f" "A-F"' \
-    64617461204D617962652061203D204E6F7468696E67207C204A7573742061
+  64617461204D617962652061203D204E6F7468696E67207C204A7573742061
+
+./check_exercise.sh 2 3 \
+'queryGreek greekDataA "alpha"
+queryGreek greekDataA "beta"
+queryGreek greekDataA "gamma"
+queryGreek greekDataA "delta"
+queryGreek greekDataA "zeta"
+queryGreek greekDataB "rho"
+queryGreek greekDataB "phi"
+queryGreek greekDataB "chi"
+queryGreek greekDataB "psi"
+queryGreek greekDataB "omega"' \
+  cat \
+'Just 2.0
+Nothing
+Just 3.3333333333333335
+Nothing
+Nothing
+Nothing
+Just 0.24528301886792453
+Just 9.095238095238095
+Nothing
+Just 24.0'
+

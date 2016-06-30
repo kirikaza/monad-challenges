@@ -40,3 +40,15 @@ minimumMay [] = Nothing
 minimumMay (x:xs) = Just $ case minimumMay xs of
   Nothing -> x
   Just min -> if x < min then x else min
+
+
+queryGreek :: GreekData -> String -> Maybe Double
+queryGreek greeks name = case lookupMay name greeks of
+  Nothing -> Nothing
+  Just values -> case tailMay values of
+    Nothing -> Nothing
+    Just tail -> case maximumMay tail of
+      Nothing -> Nothing
+      Just max -> case headMay values of
+        Nothing -> Nothing
+        Just head -> divMay (fromIntegral max) (fromIntegral head)
